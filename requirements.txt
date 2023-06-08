@@ -4,5 +4,3 @@ requests
 Pillow
 tomlkit
 urlextract
-transformers
-torch

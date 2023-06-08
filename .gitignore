@@ -11,4 +11,3 @@ resources/*.toml
 
 .env
 start.bat
-core/MagicPrompt-SD/*
