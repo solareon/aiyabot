@@ -56,7 +56,15 @@ class IdentifyObject:
         self.init_image = init_image
         self.phrasing = phrasing
         self.view = view
+        
 
+# the queue object for generate
+class GenerateObject:
+    def __init__(self, cog, ctx, prompt):
+        self.cog = cog
+        self.ctx = ctx
+        self.prompt = prompt
+        
 
 # the queue object for posting to Discord
 class PostObject:
@@ -74,14 +82,23 @@ class GlobalQueue:
     dream_thread = Thread()
     post_event_loop = asyncio.get_event_loop()
     queue: list[DrawObject | UpscaleObject | IdentifyObject] = []
-
+    # new generate queue and thread
+    generate_queue: list[GenerateObject] = []
+    generate_thread = Thread()
+    
     post_thread = Thread()
     event_loop = asyncio.get_event_loop()
     post_queue: list[PostObject] = []
+    
+    def get_queue_sizes():
+        return {
+            "General Queue": len(GlobalQueue.queue),
+            "/Generate Queue": len(GlobalQueue.generate_queue)
+        }
 
 
 def process_queue():
-    def start(target_queue: list[DrawObject | UpscaleObject | IdentifyObject]):
+    def start(target_queue: list[DrawObject | UpscaleObject | IdentifyObject | GenerateObject]):
         queue_object = target_queue.pop(0)
         queue_object.cog.dream(GlobalQueue.event_loop, queue_object)
 
@@ -93,6 +110,9 @@ async def process_dream(self, queue_object: DrawObject | UpscaleObject | Identif
     GlobalQueue.dream_thread = Thread(target=self.dream, args=(GlobalQueue.event_loop, queue_object))
     GlobalQueue.dream_thread.start()
 
+async def process_generate(self, queue_object: GenerateObject):
+    GlobalQueue.generate_thread = Thread(target=self.dream, args=(GlobalQueue.event_loop, queue_object))
+    GlobalQueue.generate_thread.start()
 
 def process_post(self, queue_object: PostObject):
     if GlobalQueue.post_thread.is_alive():
