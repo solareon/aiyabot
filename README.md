@@ -10,11 +10,6 @@ To generate an image from text, use the /draw command and include your prompt as
 
 <img src=https://raw.githubusercontent.com/Kilvoctu/kilvoctu.github.io/master/pics/preview2.png>
 
-To generate a prompt from a couple of words, use the /generate command and include your text as the query.
-
-![image](https://github.com/wizz13150/aiyabot/assets/22177081/20c34f36-1b7d-412b-8e53-4e4b25562167)
-
-
 ### Currently supported options
 
 - negative prompts
@@ -39,11 +34,7 @@ To generate a prompt from a couple of words, use the /generate command and inclu
   - also can set maximum steps limit and max batch count limit
   - refresh (update AIYA's options with any changes from Web UI)
 - /identify command - create a caption for your image.
-- /generate command - generate a prompt from text, using https://huggingface.co/Gustavosta/MagicPrompt-Stable-Diffusion
 - /stats command - shows how many /draw commands have been used.
-
-- /queue command - shows the size of each queue.
-
 - /info command - basic usage guide, other info, and download batch images.
 - /upscale command - resize your image.
 - buttons - certain outputs will contain buttons.
@@ -65,7 +56,7 @@ To generate a prompt from a couple of words, use the /generate command and inclu
 ## Setup requirements
 
 - Set up [AUTOMATIC1111's Stable Diffusion AI Web UI](https://github.com/AUTOMATIC1111/stable-diffusion-webui).
-  - AIYA is currently tested on commit `20ae71faa8ef035c31aa3a410b707d792c8203a3` of the Web UI.
+  - AIYA is currently tested on commit `22bcc7be428c94e9408f589966c2040187245d81` of the Web UI.
 - Run the Web UI as local host with API (`COMMANDLINE_ARGS= --api`).
 - Clone this repo.
 - Create a file in your cloned repo called ".env", formatted like so:
@@ -115,20 +106,14 @@ Note the following environment variables work with the docker image:
 
 ## Credits
 
-#### Foundation
 AIYA only exists thanks to these awesome people:
 - AUTOMATIC1111, and all the contributors to the Web UI repo.
   - https://github.com/AUTOMATIC1111/stable-diffusion-webui
 - harubaru, my entryway into Stable Diffusion (with Waifu Diffusion) and foundation for the AIYA Discord bot.
   - https://github.com/harubaru/waifu-diffusion
   - https://github.com/harubaru/discord-stable-diffusion
-
-#### Great Contributors
-These people played a large role in AIYA's development in some way:
-- solareon, for developing a more sensible way to display and interact with batches of images.
-- danstis, for dockerizing AIYA.
-- ashen-sensored, for developing a workaround for Discord removing PNG info to image uploads. *edit* Discord is no longer doing this at the moment, but credit is still due.
-  - https://github.com/ashen-sensored/sd_webui_stealth_pnginfo 
 - gingivere0, for PayloadFormatter class for the original API. Without that, I'd have given up from the start. Also has a great Discord bot as a no-slash-command alternative.
   - https://github.com/gingivere0/dalebot
+- ashen-sensored, for developing a workaround for Discord removing PNG info to image uploads.
+  - https://github.com/ashen-sensored/sd_webui_stealth_pnginfo 
 - You, for using AIYA and contributing with PRs, bug reports, feedback, and more!

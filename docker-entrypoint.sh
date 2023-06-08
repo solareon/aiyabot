@@ -5,7 +5,5 @@ set -eou pipefail
 cp -n "/default/resources/messages.csv" "/app/resources/messages.csv"
 cp -n "/default/outputs/.keep" "/app/outputs/.keep"
 
-# Download generate pre-reqs
-python core/setup_generate.py
 # Start the app.
 python aiya.py
